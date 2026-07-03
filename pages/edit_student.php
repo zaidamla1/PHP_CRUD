@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+<?php
+require_once "../config/database.php";
+$id = $_GET['id'];
+
+$stmt = $conn->prepare("SELECT * from students WHERE id = ?");
+$stmt->bind_param("i",$id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$student = $result->fetch_assoc();
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -81,29 +92,28 @@
 <body>
 
     <div class="container">
-        <h2>Add Student</h2>
+        <h2>Update Student</h2>
 
-        <form action="insert_students.php" method="post">
+        <form action="update_student.php" method="post">
             <div class="form-group">
+                <input type="hidden" name="id" value="<?=$student['id']?>">
+
                 <label for="name">Student Name</label>
-                <input type="text" id="name" name="name"  placeholder="Enter student name" required>
+                <input type="text" value="<?=$student['name']?>" id="name" name="name"  placeholder="Enter student name" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter email" required>
+                <input type="email" readonly disabled value="<?=$student['email']?>" id="email" name="email" placeholder="Enter email" required>
             </div>
 
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" name="city" id="city" placeholder="Enter city" required>
+                <input type="text" value="<?=$student['city']?>" name="city" id="city" placeholder="Enter city" required>
             </div>
 
-            <div class="form-group">
-                <label for="course">Course</label>
-                <input type="text" name="course" id="city" placeholder="Enter Course" required>
-            </div>
-            <button type="submit">Submit</button>
+
+            <button type="submit">Update</button>
         </form>
     </div>
 

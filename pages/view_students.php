@@ -24,7 +24,7 @@ $result = $conn->query("SELECT * FROM students");
             <td><?= $row['city'] ?></td>
             <td><?= $row['course'] ?></td>
             <td>
-                <a href="#">Edit</a> | <a href="delete_student.php?id=<?= $row['id'] ?>">Delete</a>
+                <a href="edit_student.php?id=<?= $row['id'] ?>">Edit</a> | <a href="delete_student.php?id=<?= $row['id'] ?>">Delete</a>
             </td>
         </tr>
     <?php endwhile; ?>
