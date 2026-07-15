@@ -1,5 +1,16 @@
+<?php
+$message = "";
+
+if (isset($_GET['msg'])) {
+    $message = $_GET['msg'];
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +37,7 @@
             background: #fff;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
 
         h2 {
@@ -78,15 +89,22 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h2>Add Student</h2>
 
+        <?php
+        if ($message != "") {
+            echo "<p style='color:red'>$message</p>";
+        }
+        ?>
+
         <form action="insert_students.php" method="post">
             <div class="form-group">
                 <label for="name">Student Name</label>
-                <input type="text" id="name" name="name"  placeholder="Enter student name" required>
+                <input type="text" id="name" name="name" placeholder="Enter student name" required>
             </div>
 
             <div class="form-group">
@@ -96,7 +114,7 @@
 
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" name="city" id="city" placeholder="Enter city" required>
+                <input type="text" name="city" id="city" placeholder="Enter city" >
             </div>
 
             <div class="form-group">
@@ -108,4 +126,5 @@
     </div>
 
 </body>
+
 </html>
